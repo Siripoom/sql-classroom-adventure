@@ -1,0 +1,213 @@
+.student-app{background:radial-gradient(ellipse at 76% 0%,#eeebff66,transparent 60%),#f9f8fe;color:#201b40;min-height:100dvh}
+.student-app .student-sidebar{width:220px;background:#ffffff85;border-right:1px solid white;padding:30px 16px 22px;position:sticky;top:0;height:100dvh;gap:28px}
+.student-app .student-brand{display:flex;align-items:center;gap:12px;color:#6553ff;font-size:33px;font-weight:800;text-decoration:none;line-height:1.1;padding:0 10px}
+.student-app .student-brand strong{display:block;font-size:19px;color:#211b40;margin-top:5px}
+.student-app .student-brand-icon{display:grid;position:relative;place-items:center;color:#635bff;width:44px;flex:none}
+.student-app .student-brand-icon svg:last-child{position:absolute;top:-16px;right:-1px;transform:rotate(-15deg);fill:#c5baff}
+.student-app .student-sidebar nav{display:grid;margin-top:12px}
+.student-app .student-sidebar nav button{font-size:15px;min-height:54px;padding:14px 15px;justify-content:flex-start;white-space:nowrap}
+.student-app .student-sidebar nav button.selected{background:linear-gradient(115deg,#7c63ff,#6152ff);color:white;box-shadow:0 9px 18px #6954f322}
+.student-app .student-sidebar-art{margin-top:auto;text-align:center;overflow:hidden}
+.student-app .student-sidebar-art img{width:185px;max-width:100%;border-radius:24px;mix-blend-mode:multiply}
+.student-app .student-sidebar-art p{font-size:13px;color:#6d638b;margin:12px 0 0}
+.student-app .student-logout{padding:8px 0;background:transparent;color:#8b829e;font-size:11px;min-height:44px}
+.student-app .student-main{padding:22px 26px 26px;max-width:1680px;margin:0 auto;width:100%}
+.student-app .student-main.is-classroom{height:100dvh;display:flex;flex-direction:column}
+.student-app .student-header{flex:none;gap:20px;margin-bottom:18px;min-height:96px;position:relative}
+.student-app .student-heading{display:flex;gap:16px;align-items:center;min-width:0}
+.student-app .student-school{width:96px;height:96px;object-fit:contain;flex:none}
+.student-app .student-heading h1{font-size:clamp(30px,3.4vw,51px);font-weight:800;letter-spacing:-1.5px;line-height:1.35;margin:0}
+.student-app .student-heading h1 span{color:#6854ff;text-shadow:0 4px 5px #b1a4fa40}
+.student-app .student-heading p{margin:4px 0 0;color:#75658f;font-size:15px}
+.student-app .student-sparkle{color:#ffc857;margin-left:6px}
+.student-app .student-hero{display:flex;align-items:flex-end;flex:none;margin-left:auto}
+.student-app .student-bubble{position:relative;margin:0 -10px 14px 0;padding:14px 30px 14px 24px;border:1px solid #e6e0f8;border-radius:30px;background:#ffffffb8;box-shadow:0 8px 22px #8f79b614;color:#5d4f80;font-size:15px;line-height:1.7;transform:rotate(-4deg);z-index:1}
+.student-app .student-bubble svg{position:absolute;right:-9px;top:-9px;color:#ffc857;fill:#ffe9a8}
+.student-app .student-hero-art{height:104px;width:auto;display:block}
+.student-app .student-classroom{flex:1;min-height:0;container-type:size;display:flex;justify-content:center;align-items:stretch;gap:22px}
+.student-app .student-room{position:relative;flex:1 1 0;min-width:0;max-width:calc(100cqh*2454/1558);aspect-ratio:2454/1558;align-self:flex-start;overflow:hidden;border:3px solid white;border-radius:26px;background:#eadccc;box-shadow:0 10px 32px #8d7aaf0c}
+.student-app .student-room-canvas{position:relative;width:100%;container-type:inline-size}
+.student-app .student-room-image{width:100%;height:100%;display:block}
+.student-app .student-desk{position:absolute;transform:translate(-50%,-50%);width:calc(26%*1254/2454);min-height:44px;gap:7px;padding:7px 9px;border:2px solid #ffffff;border-radius:12px;background:linear-gradient(#fff,#ede7fc);color:#252139;box-shadow:0 4px 5px #493a5633;font-size:clamp(11px,1cqw,20px);transition:box-shadow .18s,background .18s}
+.student-app .student-desk:focus-visible{outline:3px solid #6854ff;outline-offset:3px}
+.student-app .student-desk-number{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:#b0a8bf;color:white;font-size:14px;flex:none}
+.student-app .student-desk strong{white-space:nowrap;font-family:system-ui,sans-serif;letter-spacing:-.5px}
+.student-app .student-desk.is-current{background:linear-gradient(#fff29a,#ffd756);border-color:#fff9aa;box-shadow:0 0 0 4px #ffeb8166,0 0 22px 7px #ffe369b3;z-index:2}
+.student-app .student-desk.is-current .student-desk-number{background:#bd9141}
+.student-app .student-desk.is-done .student-desk-number{background:#33bfa0}
+.student-app .student-desk.is-locked{background:linear-gradient(#f4f2f8,#dedaea);color:#8b849c;cursor:not-allowed;box-shadow:0 3px 4px #493a5620}
+.student-app .student-desk-status{display:none;position:absolute;right:0;bottom:calc(100% + 27px);width:34px;height:34px;border:3px solid white;border-radius:50%;background:#6c57ff;color:white;box-shadow:0 2px 7px #33274133;align-items:center;justify-content:center}
+.student-app .student-desk.is-current .student-desk-status,.student-app .student-desk.is-done .student-desk-status,.student-app .student-desk.is-locked .student-desk-status{display:flex}
+.student-app .student-desk.is-done .student-desk-status{background:#34c59d}
+.student-app .student-desk.is-locked .student-desk-status{background:#9d96b0}
+.student-app .student-profile-card{flex:0 0 clamp(300px,27cqw,420px);min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:18px;border:1px solid white;background:#ffffffe0;border-radius:25px;padding:22px;box-shadow:0 8px 30px #8f79b60d;scrollbar-width:thin}
+.student-app .student-profile-card h2{margin:0;font-size:20px;line-height:1.4;overflow-wrap:anywhere}
+.student-app .student-profile-card h3{margin:0 0 10px;font-size:14px;color:#4a3b69}
+.student-app .student-profile-top{display:flex;align-items:center;gap:14px}
+.student-app .student-profile-top p{display:inline-flex;align-items:center;gap:5px;margin:5px 0 0;padding:4px 11px;border-radius:20px;background:#fff3db;color:#bf8122;font-size:13px}
+.student-app .student-avatar{display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:50%;background:#e9e3ff;color:#6d57cb;font-size:24px;font-weight:700}
+.student-app .student-profile-row{display:flex;align-items:baseline;justify-content:space-between}
+.student-app .student-profile-row b{color:#6854ff}
+.student-app .student-profile-card progress{appearance:none;width:100%;height:10px;border:0;border-radius:99px;overflow:hidden;background:#ece8fb}
+.student-app .student-profile-card progress::-webkit-progress-bar{background:#ece8fb}
+.student-app .student-profile-card progress::-webkit-progress-value{background:linear-gradient(90deg,#7c63ff,#a99bf2);border-radius:99px}
+.student-app .student-profile-card progress::-moz-progress-bar{background:#7c63ff;border-radius:99px}
+.student-app .student-quiz-scores{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.student-app .student-quiz-score{display:grid;gap:2px;padding:12px;border-radius:16px;background:#f4f1fd}
+.student-app .student-quiz-score small{font-size:12px;color:#7a6c96}
+.student-app .student-quiz-score strong{font-family:system-ui,sans-serif;font-size:28px;line-height:1.2;color:#4a3b8f}
+.student-app .student-quiz-score span{font-size:11px;color:#8a7a9e}
+.student-app .student-gain{display:flex;align-items:center;gap:6px;margin:10px 0 0;padding:8px 12px;border-radius:12px;background:#e3f8f0;color:#1d8a6b;font-size:13px}
+.student-app .student-lesson-list ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.student-app .student-lesson-list li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:10px;padding:9px 11px;border-radius:14px;background:#f7f5fe}
+.student-app .student-lesson-list b{display:block;font-family:system-ui,sans-serif;font-size:14px}
+.student-app .student-lesson-list small{display:block;font-size:11px;color:#8a7a9e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.student-app .student-lesson-list em{font-style:normal;font-size:11px;color:#8a7a9e}
+.student-app .student-lesson-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#e2dafe;color:#66518f;font-size:13px;font-weight:700}
+.student-app .student-lesson-list .is-done .student-lesson-mark{background:#34c59d;color:white}
+.student-app .student-lesson-list .is-done em{color:#1d8a6b}
+.student-app .student-lesson-list .is-locked{opacity:.65}
+.student-app .student-lesson-list .is-locked .student-lesson-mark{background:#e4e0ee;color:#9b94ad}
+.student-app .student-start{width:100%;min-height:54px;margin-top:auto;flex:none;border-radius:17px;background:linear-gradient(115deg,#7b62ff,#6050ff);box-shadow:0 8px 16px #6e55ff22;font-size:16px;padding:12px}
+.student-app .student-start:disabled{background:#cfc9e4;box-shadow:none;cursor:not-allowed}
+.student-app .practice .panel{min-width:0}
+.student-app .practice .panel h1{font-size:26px}
+.student-app .back{font-size:13px;min-height:44px}
+@media(min-width:1500px){.student-app .student-main{padding:26px 30px 30px}}
+@media(max-width:1200px){.student-app .student-sidebar{width:190px;padding:28px 12px}.student-app .student-brand{font-size:28px;padding:0 4px;gap:8px}.student-app .student-brand strong{font-size:17px}.student-app .student-sidebar nav button{font-size:13px;padding:12px}.student-app .student-main{padding:20px 18px 22px}.student-app .student-classroom{gap:14px}.student-app .student-profile-card{padding:18px}.student-app .student-school{width:76px;height:76px}.student-app .student-hero-art{height:88px}.student-app .student-bubble{font-size:13px;padding:12px 26px 12px 20px}.student-app .student-desk{gap:5px;padding:6px}.student-app .student-desk-number{height:22px;width:22px;font-size:12px}}
+@media(max-width:1000px){.student-app .student-main.is-classroom{height:auto;display:block}.student-app .student-header{margin-bottom:16px}.student-app .student-classroom{container-type:normal;display:grid;grid-template-columns:1fr;gap:18px}.student-app .student-room{width:100%;max-width:640px;justify-self:center;flex:none;aspect-ratio:auto;overflow-x:auto;overscroll-behavior-x:contain}.student-app .student-room-canvas{width:max(100%,860px)}.student-app .student-profile-card{overflow:visible;flex:none}.student-app .student-bubble{display:none}.student-app .student-heading p{font-size:12px}}
+@media(max-width:650px){.student-app{display:block}.student-app .student-sidebar{height:auto;position:static;width:100%;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:22px 17px 14px;gap:15px}.student-app .student-brand{font-size:24px;gap:10px}.student-app .student-brand strong{font-size:14px}.student-app .student-brand-icon{width:32px}.student-app .student-brand-icon>svg:first-child{width:29px}.student-app .student-brand-icon>svg:last-child{width:19px;top:-12px}.student-app .student-sidebar nav{margin:0;order:3;width:100%}.student-app .student-sidebar nav button{width:100%;justify-content:center;min-height:44px}.student-app .student-sidebar nav svg{display:block}.student-app .student-sidebar-art{display:none}.student-app .student-logout{font-size:10px;padding:0;gap:5px}.student-app .student-main{padding:18px 13px 28px}.student-app .student-header{margin-bottom:14px;min-height:0;gap:8px}.student-app .student-school{width:56px;height:56px}.student-app .student-heading{gap:10px}.student-app .student-heading h1{font-size:28px;letter-spacing:-1px}.student-app .student-heading p{font-size:11px;line-height:1.7;max-width:190px}.student-app .student-hero-art{height:68px}.student-app .student-room{border-radius:20px;border-width:2px}.student-app .student-desk{width:calc(29%*1254/2454);gap:4px;border-radius:9px;padding:5px}.student-app .student-desk-number{width:20px;height:20px;font-size:11px}.student-app .student-desk-status{width:27px;height:27px;bottom:calc(100% + 8px);border-width:2px}.student-app .student-desk-status svg{width:16px}.student-app .student-profile-card{border-radius:20px}.student-app .student-start{font-size:15px}.student-app .practice{gap:14px}.student-app .practice .panel{padding:20px}.student-app .practice .panel h1{font-size:23px}}
+@media(max-height:900px) and (min-width:1001px){.student-app .student-profile-card{gap:12px;padding:16px 18px}.student-app .student-profile-card h3{margin-bottom:7px}.student-app .student-avatar{width:46px;height:46px;font-size:20px}.student-app .student-quiz-score{padding:8px 10px}.student-app .student-quiz-score strong{font-size:22px}.student-app .student-lesson-list ul{grid-template-columns:1fr 1fr;gap:6px}.student-app .student-lesson-list li{grid-template-columns:24px minmax(0,1fr);padding:6px 8px;gap:8px}.student-app .student-lesson-list em,.student-app .student-lesson-list small{display:none}.student-app .student-lesson-mark{width:24px;height:24px}.student-app .student-start{min-height:46px}}
+@media(prefers-reduced-motion:reduce){.student-app .student-desk{transition:none}}
+
+/* SQL lab workspace */
+.student-app .lab .panel{padding:24px;border-radius:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.student-app .lab h1{font-size:25px;line-height:1.3;letter-spacing:-.4px;margin-top:6px}
+.student-app .lab-title{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px}
+.student-app .lab-target{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#ffe9ec;color:#e5484d}
+.student-app .lab-xp{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:14px;background:#fff3d1;color:#c9791a;font-weight:700;font-size:15px;white-space:nowrap}
+.student-app .lab-xp svg{color:#ffb300}
+.student-app .lab-head{display:flex;align-items:center;gap:10px;font-size:18px;color:#26234a}
+.student-app .lab-head svg{color:#5b54ff}
+.student-app .lab-task{margin:-6px 0 0;color:#3d3a55;font-size:16px;line-height:1.7}
+.student-app .lab-goal{display:flex;gap:12px;padding:14px 16px;border-radius:16px;background:#eeebff}
+.student-app .lab-goal>svg{color:#f5a524;flex:none;margin-top:2px}
+.student-app .lab-goal b{display:block;font-size:15px;color:#26234a}
+.student-app .lab-goal span{display:block;font-size:13px;color:#6a6585;line-height:1.6}
+.student-app .lab-schema{border-radius:14px;background:#f8f7fd;padding:10px 12px}
+.student-app .lab-schema b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:14px;margin:2px 0 8px;color:#26234a}
+.student-app .lab-schema table{background:#fff;border:1px solid #e9e6f4;border-radius:10px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13px}
+.student-app .lab-schema th{background:#f4f2fb;font-weight:700;color:#4a4568;padding:7px 10px}
+.student-app .lab-schema td{padding:6px 10px;font-family:ui-monospace,Menlo,monospace;border-bottom:1px solid #eeeaf6}
+.student-app .lab-schema tr:last-child td{border-bottom:0}
+.student-app .lab-hint{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 10px;align-items:center;padding:12px;border-radius:18px;background:#f1eeff}
+.student-app .lab-bot{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;color:#5b54ff;box-shadow:0 4px 10px #5b54ff1f}
+.student-app .lab-hint p{margin:0;padding:10px 14px;border-radius:16px;background:#e5e0ff;color:#3d3a55;font-size:13px;line-height:1.6}
+.student-app .lab-hint .secondary{grid-column:1/-1;width:100%;justify-content:space-between;background:#e8e4ff;color:#4f46d8;font-size:15px;padding:13px 16px}
+.student-app .lab-hint .secondary svg:last-child{margin-left:auto}
+.student-app .lab-mission small{margin-top:auto}
+
+.student-app .lab-editor{border-radius:22px;background:#171d31;overflow:hidden;box-shadow:0 10px 24px #171d3126}
+.student-app .lab-editor-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;color:#fff;font-weight:700;font-size:16px}
+.student-app .lab-editor-bar span{display:inline-flex;align-items:center;gap:10px}
+.student-app .lab-editor-bar small{color:#8e98b8;font-size:12px}
+.student-app .lab-code{display:flex;height:300px;border-top:1px solid #262e48;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:15px;line-height:28px}
+.student-app .lab-gutter{flex:none;width:54px;padding:16px 0;overflow:hidden;background:#1b2238;color:#6b7699;text-align:center}
+.student-app .lab-gutter span{display:block;height:28px}
+.student-app .lab-text{position:relative;flex:1;min-width:0}
+.student-app .lab-text pre,.student-app .lab-text textarea{position:absolute;inset:0;margin:0;padding:16px 20px;border:0;border-radius:0;font:inherit;line-height:inherit;white-space:pre;tab-size:2;overflow:auto;letter-spacing:0}
+.student-app .lab-text pre{pointer-events:none;color:#e7ebff;scrollbar-width:none}
+.student-app .lab-text pre::-webkit-scrollbar{display:none}
+.student-app .lab-text textarea{z-index:1;width:100%;height:100%;min-height:0;background:transparent;color:transparent;caret-color:#fff;resize:none}
+.student-app .lab-text textarea::selection{background:#5b54ff66}
+.student-app .lab-text textarea:focus-visible{outline:2px solid #8f87ff;outline-offset:-2px}
+.student-app .sql-keyword{color:#b79bff}
+.student-app .sql-string{color:#8fe3c0}
+.student-app .sql-number{color:#ffc857}
+.student-app .sql-comment{color:#7a86aa;font-style:italic}
+.student-app .lab-actions{display:flex;gap:14px;padding:14px 16px;background:#171d31;border-top:1px solid #262e48}
+.student-app .lab-run{flex:1;min-height:56px;border-radius:16px;background:linear-gradient(180deg,#6a62ff,#5148f2);font-size:18px;gap:12px;box-shadow:0 8px 18px #5148f240}
+.student-app .lab-run kbd{font:inherit;font-size:12px;font-weight:500;padding:5px 10px;border-radius:9px;background:#ffffff26}
+.student-app .lab-clear{min-height:56px;padding:0 26px;border-radius:16px;background:transparent;border:1.5px solid #5b6489;color:#fff;font-size:17px}
+.student-app .lab-clear:hover{background:#ffffff12}
+
+.student-app .lab-result{border:1px solid #ece9f7;border-radius:20px;padding:16px 18px}
+.student-app .lab-result-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.student-app .lab-result-bar h3{display:flex;align-items:center;gap:10px;font-size:18px}
+.student-app .lab-result-bar h3 svg{color:#5b54ff}
+.student-app .lab-result-bar h3 span{font-weight:500;color:#6a6585;font-size:15px}
+.student-app .lab-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:12px;font-size:13px;font-weight:700}
+.student-app .lab-badge.is-ok{background:#e3f8f0;color:#1d8a6b}
+.student-app .lab-badge.is-warn{background:#fff3d1;color:#a8680f}
+.student-app .lab-badge.is-bad{background:#ffe9ee;color:#b3304f}
+.student-app .lab-result .table-wrap{border:1px solid #ece9f7;border-radius:12px}
+.student-app .lab-result table{font-size:15px}
+.student-app .lab-result th{background:#f4f2fb;font-weight:700;padding:10px 14px}
+.student-app .lab-result td{padding:10px 14px}
+.student-app .lab-result tr:last-child td{border-bottom:0}
+.student-app .lab-result tbody tr:nth-child(even){background:#faf9fe}
+.student-app .lab-empty{margin:0;padding:18px 0;text-align:center;color:#908ba5;font-size:14px}
+
+.student-app .lab-banner{display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:22px}
+.student-app .lab-banner:empty{display:none}
+.student-app .lab-banner b{display:block;font-size:20px;line-height:1.4}
+.student-app .lab-banner span{display:block;font-size:13px;line-height:1.6}
+.student-app .lab-banner>div{flex:1;min-width:0}
+.student-app .lab-banner.is-right{background:linear-gradient(100deg,#d6f6e8,#eafaf3);color:#14614b}
+.student-app .lab-banner.is-right>svg{color:#1faa78;flex:none}
+.student-app .lab-banner.is-wrong{background:#fff5da;color:#7a4d08}
+.student-app .lab-banner.is-error{background:#fff0f4;color:#8f2a47}
+.student-app .lab-banner.is-wrong>svg,.student-app .lab-banner.is-error>svg{flex:none}
+.student-app .lab-next{flex:none;min-height:50px;padding:0 24px;border-radius:14px;background:#4f46e5;font-size:16px;box-shadow:0 6px 14px #4f46e533}
+
+@media(max-width:1000px){.student-app .lab{grid-template-columns:1fr}}
+@media(max-width:650px){.student-app .lab .panel{padding:16px;border-radius:20px}.student-app .lab-title{grid-template-columns:auto minmax(0,1fr)}.student-app .lab-xp{grid-column:1/-1;justify-self:start}.student-app .lab-code{height:230px;font-size:14px}.student-app .lab-gutter{width:40px}.student-app .lab-run kbd{display:none}.student-app .lab-clear{padding:0 18px}.student-app .lab-banner{flex-wrap:wrap}.student-app .lab-next{width:100%}}
+.student-app .lab .pill{font-size:12px;letter-spacing:0;padding:4px 10px;background:#eeebff;color:#6a5bd0;font-weight:600}
+.student-app .lab .pill{white-space:nowrap}.student-app .lab-title h1{overflow-wrap:anywhere}
+
+/* Lab phases */
+.student-app .lab-steps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:6px;list-style:none;border-radius:18px;background:#f4f2fb}
+.student-app .lab-steps button{width:100%;min-height:48px;justify-content:center;gap:10px;border-radius:13px;background:transparent;color:#7d7897;font-size:15px}
+.student-app .lab-steps button b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#e4e0f2;color:#6d6788;font-size:13px}
+.student-app .lab-steps button.is-current{background:#fff;color:#4f46d8;box-shadow:0 4px 12px #5b54ff1f}
+.student-app .lab-steps button.is-current b{background:#5b54ff;color:#fff}
+.student-app .lab-steps button.is-done b{background:#34c59d;color:#fff}
+.student-app .lab-steps button:disabled{opacity:.55;cursor:not-allowed}
+.student-app .lab-arrange{display:flex;flex-direction:column}
+.student-app .arrange-line{display:flex;flex-wrap:wrap;align-content:flex-start;gap:10px;min-height:150px;margin:0 16px;padding:16px;border:2px dashed #3a4468;border-radius:18px;background:#1b2238}
+.student-app .arrange-placeholder{align-self:center;margin:0 auto;color:#7a86aa;font-size:14px}
+.student-app .arrange-pool{display:flex;flex-wrap:wrap;gap:10px;padding:18px 16px 4px;min-height:110px}
+.student-app .arrange-chip{min-height:44px;padding:8px 16px;border-radius:12px;background:#fff;color:#26234a;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:15px;font-weight:700;box-shadow:0 3px 0 #b9b2e6}
+.student-app .arrange-chip:hover{filter:none;transform:translateY(-1px)}
+.student-app .arrange-chip:active{transform:translateY(2px);box-shadow:0 1px 0 #b9b2e6}
+.student-app .arrange-chip.is-placed{background:#e7e2ff;color:#3d33c9}
+.student-app .arrange-chip:disabled{opacity:1;background:transparent;color:transparent;box-shadow:none;border:2px dashed #3a4468;cursor:default;user-select:none}
+@media(max-width:650px){.student-app .arrange-line{min-height:120px;margin:0 12px}.student-app .arrange-pool{padding:14px 12px 2px}}
+.student-app .arrange-pool{align-content:flex-start}.student-app .arrange-chip{align-self:flex-start}
+.student-app .student-room-hint{display:none}
+@media(max-width:1000px){.student-app .student-room-hint{display:block;position:sticky;left:0;margin:0;padding:6px 12px;font-size:12px;color:#6b6480;background:#ffffffd9;text-align:center}}
+
+/* Student quizzes */
+.student-app .student-quiz-page{max-width:920px;margin:0 auto;padding-bottom:24px}.student-app .student-quiz-back{margin-bottom:14px}.student-app .student-quiz-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin:0 0 20px}.student-app .student-quiz-header h1{font-size:clamp(28px,4vw,42px);margin:8px 0 0}.student-app .student-quiz-header p{margin:3px 0;font-size:14px}.student-app .student-quiz-header>svg{color:#8d80bb;flex:none;margin-top:9px}.student-app .student-quiz-card{background:#fff;border:1px solid #eeeaf8;border-radius:24px;padding:24px;box-shadow:0 10px 30px #8f79b614}.student-app .student-quiz-intro{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:15px;padding-bottom:20px;border-bottom:1px solid #eeeaf6}.student-app .student-quiz-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:#eeebff;color:#635bff}.student-app .student-quiz-intro h2{margin:6px 0 2px;font-size:21px}.student-app .student-quiz-intro p{margin:0;font-size:13px}.student-app .student-quiz-intro>strong{padding:10px 13px;border-radius:12px;background:#f4f1fd;color:#635bff;font-family:system-ui,sans-serif}.student-app .student-quiz-question{border:0;border-bottom:1px solid #eeeaf6;padding:22px 0 18px;margin:0}.student-app .student-quiz-question legend{display:flex;gap:10px;width:100%;padding:0;margin-bottom:12px;color:#32294f;font-size:16px;font-weight:700;line-height:1.6}.student-app .student-quiz-question legend span{color:#6d58da;white-space:nowrap}.student-app .student-quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.student-app .student-quiz-options label{display:flex;align-items:center;gap:10px;min-height:52px;padding:9px 12px;border:1px solid #e8e4f4;border-radius:13px;background:#fbfaff;color:#4c4665;cursor:pointer;transition:background .15s,border-color .15s}.student-app .student-quiz-options label:hover,.student-app .student-quiz-options label.is-selected{border-color:#8372ef;background:#eeebff;color:#4131ad}.student-app .student-quiz-options input{position:absolute;opacity:0}.student-app .student-quiz-options input:focus-visible+ b{outline:3px solid #a99fff;outline-offset:3px}.student-app .student-quiz-options b{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:#e9e5f8;color:#735fcb;flex:none}.student-app .student-quiz-options label.is-selected b{background:#635bff;color:#fff}.student-app .student-quiz-options span{overflow-wrap:anywhere}.student-app .student-quiz-submit{width:100%;margin-top:20px;min-height:54px;border-radius:16px;font-size:16px}.student-app .student-quiz-confirm{display:flex;align-items:center;gap:11px;margin-top:18px;padding:14px;border-radius:15px;background:#fff5da;color:#875b15}.student-app .student-quiz-confirm>div{flex:1;min-width:0}.student-app .student-quiz-confirm b,.student-app .student-quiz-confirm span{display:block}.student-app .student-quiz-confirm span{font-size:12px;margin-top:3px}.student-app .student-quiz-confirm button{min-height:44px;padding:10px 14px;white-space:nowrap}.student-app .student-quiz-confirm .secondary{background:#fff;color:#80622b;border:1px solid #ead3a0}.student-app .student-quiz-error{padding:11px 14px;border-radius:12px;background:#fff0f4;color:#a12f50;font-size:13px}.student-app .student-quiz-loading,.student-app .student-quiz-message,.student-app .student-quiz-result{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;min-height:310px;padding:30px;background:#fff;border:1px solid #eeeaf8;border-radius:24px}.student-app .student-quiz-loading{color:#7669a0}.student-app .student-quiz-message h2,.student-app .student-quiz-result h2{font-size:23px}.student-app .student-quiz-message p,.student-app .student-quiz-result p{margin:0;font-size:14px}.student-app .student-quiz-message>div{display:flex;gap:9px}.student-app .student-quiz-message.is-error>svg{color:#d68b28}.student-app .student-quiz-result{background:linear-gradient(145deg,#fff,#f1fff9)}.student-app .student-result-icon{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#d9f8eb;color:#21aa7e}.student-app .student-quiz-result>strong{font-family:system-ui,sans-serif;font-size:50px;line-height:1;color:#4b3cae}.student-app .student-quiz-result small{color:#8a7d9b}.student-app .student-quiz-result button{min-width:190px;margin-top:8px}.student-app .student-spin{animation:student-spin 1s linear infinite}@keyframes student-spin{to{transform:rotate(360deg)}}
+@media(max-width:650px){.student-app .student-quiz-page{padding-bottom:10px}.student-app .student-quiz-card{padding:16px;border-radius:20px}.student-app .student-quiz-intro{grid-template-columns:auto minmax(0,1fr);gap:11px}.student-app .student-quiz-intro>strong{grid-column:2;justify-self:start;padding:7px 10px}.student-app .student-quiz-intro h2{font-size:18px}.student-app .student-quiz-intro p{font-size:12px;line-height:1.7}.student-app .student-quiz-options{grid-template-columns:1fr}.student-app .student-quiz-question legend{font-size:14px}.student-app .student-quiz-confirm{flex-wrap:wrap}.student-app .student-quiz-confirm>div{flex-basis:calc(100% - 38px)}.student-app .student-quiz-confirm button{flex:1}.student-app .student-quiz-header h1{font-size:29px}}
+
+/* Name dialog after sign-in */
+.student-app .student-name-dialog{width:min(460px,calc(100% - 32px));padding:0;border:0;border-radius:26px;background:#fff;color:#252442;box-shadow:0 24px 60px #3a2d7a40}
+.student-app .student-name-dialog::backdrop{background:#2a1f5c8c;backdrop-filter:blur(5px)}
+.student-app .student-name-dialog form{display:flex;flex-direction:column;gap:12px;padding:30px 28px 24px}
+.student-app .student-name-icon{display:grid;place-items:center;width:62px;height:62px;border-radius:20px;background:#eeebff;color:#635bff}
+.student-app .student-name-dialog h2{margin:6px 0 0;font-size:22px;line-height:1.5}
+.student-app .student-name-dialog p{margin:0;font-size:13px;line-height:1.8}
+.student-app .student-name-dialog label{display:grid;gap:8px;margin-top:6px;font-size:14px;font-weight:600;color:#4a3b69}
+.student-app .student-name-dialog input{min-height:52px;padding:0 16px;border:1.5px solid #ddd7f4;border-radius:14px;background:#fbfaff;font-size:16px;color:#252442}
+.student-app .student-name-dialog input[aria-invalid="true"]{border-color:#d9436b}
+.student-app .student-name-dialog small{color:#8a7d9b}
+.student-app .student-name-dialog small b{font-family:system-ui,sans-serif;color:#4a3b8f}
+.student-app .student-name-error{padding:10px 14px;border-radius:12px;background:#fff0f4;color:#a12f50!important}
+.student-app .student-name-save{min-height:54px;margin-top:6px;border-radius:16px;font-size:16px}
+.student-app .student-name-switch{min-height:44px;background:transparent;color:#7a6c96;font-size:13px}
+@media(prefers-reduced-motion:no-preference){.student-app .student-name-dialog[open]{animation:student-name-in .2s ease-out}@keyframes student-name-in{from{opacity:0;transform:translateY(10px) scale(.98)}}}
+.student-app .student-post-wait{display:flex;align-items:center;gap:6px;margin:10px 0 0;padding:8px 12px;border-radius:12px;background:#fff3d1;color:#8a6420;font-size:13px}
+
+.student-app .student-desk strong{overflow:hidden;text-overflow:ellipsis;min-width:0}.student-app .student-notice{margin:10px 0 0;padding:8px 12px;border-radius:12px;background:#f3efff;color:#5d4f80;font-size:13px}
+.student-app .student-more-list{display:grid;gap:8px}.student-app .student-more{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:1px solid #e4dcef;border-radius:12px;background:#f8f5ff;color:#49336b;text-align:left}.student-app .student-more.is-done{background:#edf9f2;color:#2c7052}.student-app .student-more.is-locked{background:#f4f3f5;color:#8b849c;cursor:not-allowed}.student-app .student-more strong{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.student-app .student-more .student-desk-status{display:flex;position:static;width:26px;height:26px;border:0;background:transparent;color:inherit;box-shadow:none}

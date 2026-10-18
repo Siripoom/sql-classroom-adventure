@@ -1,0 +1,57 @@
+.classroom-login{display:grid;grid-template-columns:56.25% 43.75%;min-height:100svh;width:100%;max-width:none;margin:0;padding:0;color:#17123e;background:#f8f7fd}
+.classroom-login-art{background-image:url('/images/sql-classroom-reference.png');background-repeat:no-repeat;background-size:auto 100%;background-position:left center;min-height:100%;background-color:#e5d9ef}
+.classroom-login-side{display:flex;align-items:center;justify-content:center;position:relative;isolation:isolate;overflow:hidden;padding: clamp(24px,4.3vw,70px) clamp(20px,2.6vw,44px);background:radial-gradient(ellipse at 90% 0%,#eee9ff,transparent 48%),#f9f8fe}
+.classroom-login-side:before,.classroom-login-side:after{content:'';position:absolute;z-index:-1;width:180px;height:120px;background:linear-gradient(135deg,#ece7ff,#ddd5ff);border-radius:55% 40% 60% 35%;transform:rotate(-35deg)}
+.classroom-login-side:before{top:-35px;right:15px}.classroom-login-side:after{bottom:-45px;left:60px}
+.classroom-login-card{width:100%;max-width:620px;background:#ffffffed;border:1px solid white;border-radius:30px;padding:clamp(30px,4.2vw,66px) clamp(24px,3.5vw,56px) 34px;box-shadow:0 18px 50px #42377906;text-align:center}
+.login-brand{display:flex;justify-content:center;align-items:baseline;gap:8px;margin:30px 0 34px;white-space:nowrap;font-weight:900;letter-spacing:-2px}
+.login-brand-sql{position:relative;font-size:clamp(58px,6.7vw,106px);line-height:1.1;color:#8665ff;text-shadow:0 3px 0 #6245e3,2px 5px 6px #a99bff80}
+.login-brand-sql>svg{position:absolute;width:80px;height:62px;top:-47px;left:32%;color:#39305d;fill:#48406e;stroke-width:1.4;transform:rotate(-9deg)}
+.login-brand-name{position:relative;font-size:clamp(24px,2.7vw,44px);letter-spacing:-1.5px;transform:rotate(-3deg)}
+.login-brand-name:after{content:'';position:absolute;left:3%;right:0;height:9px;bottom:-12px;border-radius:20px;background:linear-gradient(#ffdb70,#ffbf35);transform:rotate(-3deg)}
+.classroom-login-card h1{font-size:clamp(27px,2.8vw,44px);letter-spacing:-1px;line-height:1.45;margin-top:42px;font-weight:800}
+.login-subtitle{margin:8px 0 30px;font-size:clamp(16px,1.6vw,24px);color:#817c9c}
+.login-role-switch{display:grid;grid-template-columns:1fr 1fr;padding:5px;border:1px solid #eae7fa;border-radius:24px;background:#f7f6fd;margin-bottom:26px;gap:4px}
+.login-role-switch button{background:transparent;color:#211b48;padding:13px 8px;border-radius:19px;gap:14px;transition:background .2s,box-shadow .2s}
+.login-role-switch button[aria-pressed=true]{background:linear-gradient(135deg,#e2d9ff,#dcd6ff);color:#4935cc;box-shadow:0 2px 3px #b3a0f540}
+.login-role-switch svg{width:36px;height:36px;color:#8375ec}.login-role-switch button[aria-pressed=false] svg{color:#85809e}
+.login-role-switch span{text-align:left;font-size:17px}.login-role-switch small{display:block;font-weight:400;font-size:13px;color:#777197}
+.login-name-field{display:flex;align-items:center;gap:18px;text-align:left;padding:12px 18px;border:1px solid #dcd9e9;border-radius:15px;background:#fff}
+.login-name-field>svg{color:#85809e;flex-shrink:0}.login-name-field>span{flex:1;min-width:0;color:#6f6989;font-size:13px}
+.login-name-field input{display:block;border:0;background:transparent;width:100%;padding:4px 0;color:#292044;outline-offset:4px;font-size:16px}.login-name-field input::placeholder{color:#9690ac}
+.login-name-field input:focus-visible{outline:none}
+.login-name-field:focus-within{border-color:#9180f7;box-shadow:0 0 0 3px #eeeaff}.login-demo-note{font-size:12px;line-height:1.8;margin:18px 0 22px;color:#89829e;min-height:3.6em;display:flex;align-items:center;justify-content:center}
+.login-submit{width:100%;padding:17px;border-radius:19px;background:linear-gradient(180deg,#8274ff,#6554ff);box-shadow:0 6px 16px #7761e326,inset 0 1px 2px #b6acff;font-size:21px;gap:15px}.login-submit:disabled{opacity:.6;cursor:not-allowed}
+.login-card-footer{display:flex;align-items:center;justify-content:center;gap:9px;border-top:1px solid #eeebf5;margin-top:42px;padding-top:25px;font-size:10px;color:#85809e;flex-wrap:wrap}.login-card-footer i{height:11px;border-left:1px solid #aaa3c1}.login-card-footer svg{color:#ffca49}
+@media(min-aspect-ratio:8/5){.classroom-login-art{background-size:177.78% auto}}
+@media(max-width:1050px){.classroom-login{grid-template-columns:48% 52%}.classroom-login-art{background-position:20% center}.classroom-login-card{padding:40px 25px 28px}.login-brand-sql{font-size:72px}.login-brand-name{font-size:30px}}
+@media(max-width:700px){.classroom-login{display:flex;flex-direction:column}.classroom-login-art{min-height:230px;height:28svh;background-size:177.78% auto;background-position:left 40%}.classroom-login-side{padding:0 16px 26px;overflow:visible;flex:1}.classroom-login-card{margin-top:-24px;padding:40px 24px 25px;max-width:480px;box-shadow:0 10px 35px #4237790a}.login-brand{margin:23px 0 25px}.classroom-login-card h1{margin-top:28px;font-size:30px}.login-subtitle{font-size:17px;margin-bottom:24px}.login-card-footer{margin-top:30px}.login-brand-sql{font-size:72px}.login-brand-name{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.login-role-switch button{transition:none}}
+
+/* Keep the entrance within the viewport; fit the full card on short screens. */
+body:has(.classroom-login){overflow:hidden;overscroll-behavior:none}
+.classroom-login{height:100dvh;min-height:0;overflow:hidden;grid-template-rows:minmax(0,1fr)}
+.classroom-login-art{min-height:0}
+.classroom-login-side{min-height:0;min-width:0;padding-block:clamp(12px,3dvh,40px);overflow:clip}
+.classroom-login-card{flex-shrink:0;transform-origin:center}
+@media(max-width:700px){
+  .classroom-login-art{flex:0 0 20dvh;height:20dvh;min-height:0}
+  .classroom-login-side{padding:12px 16px;overflow:clip}
+  .classroom-login-card{margin-top:0;padding:30px 24px 22px}
+  .login-brand{margin-bottom:18px}
+  .classroom-login-card h1{margin-top:22px}
+  .login-subtitle{margin-bottom:18px}
+  .login-role-switch{margin-bottom:18px}
+  .login-demo-note{margin:12px 0 16px}
+  .login-card-footer{margin-top:22px;padding-top:18px}
+}
+@media(max-height:500px) and (max-width:700px){
+  .classroom-login-art{display:none}
+}
+.login-name-field+.login-name-field{margin-top:14px}
+.password-toggle{padding:8px;background:transparent;color:#85809e;flex-shrink:0}
+.login-error{color:#a32e53;background:#fff0f4;border-radius:10px;padding:10px;font-size:13px;line-height:1.6}
+.auth-loading{display:grid;place-items:center;min-height:100dvh;color:#7564c6}
+.teacher-portal{max-width:1100px;margin:auto;padding:clamp(20px,5vw,70px)}
+.teacher-portal header{gap:20px;flex-wrap:wrap}
+.teacher-portal .panel{margin-top:35px;padding:clamp(25px,5vw,65px)}
