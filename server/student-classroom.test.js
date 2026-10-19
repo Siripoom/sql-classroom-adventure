@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {buildDesks, currentDesk, deskState, profileSummary, waitingOn} from '../src/student/classroom-model.ts';
+import {buildDesks, buildRoom, currentDesk, deskState, missionToOpen, profileSummary, roomDeskCount, roomDeskState, roomWaitingOn, waitingOn} from '../src/student/classroom-model.ts';
 import {progressKey, readCompleted, storeCompleted} from '../src/student/student-progress.ts';
 
 const exercise={version:1,tables:[{name:'t',columns:[{name:'id',type:'INTEGER'}],rows:[[1]]}],answerSql:'SELECT id FROM t',starterSql:'',hint:'',rowOrder:'any'};
@@ -111,4 +111,38 @@ test('stored progress is cleaned: unknown mission ids and corrupt entries read a
  storage.data.set(progressKey(mali),good.replace('"m1"','"gone"'));
  assert.deepEqual(readCompleted(storage,mali,missions),[]);
  for(const corrupt of ['{oops','[1,2]','null','"m1"','{"m1":1}'])assert.deepEqual((storage.data.set(progressKey(mali),corrupt),readCompleted(storage,mali,missions)),[]);
+});
+
+const topicClass=(overrides={})=>snapshot({missions:[mission('s1','SELECT'),mission('s2','SELECT'),mission('s3','SELECT'),mission('w1','WHERE'),mission('j1','JOIN')],...overrides});
+const room=data=>buildRoom(data).map(item=>item.id);
+const roomStates=(data,done)=>Object.fromEntries(buildRoom(data).map(item=>[item.id,roomDeskState(item,data,done)]));
+const topicDesk=(data,topic)=>buildRoom(data).find(item=>item.id===`topic:${topic}`);
+
+test('the room has one desk per topic with its missions inside, between the pre-test and post-test desks', () => {
+ assert.deepEqual(room(topicClass()),['pre','topic:SELECT','topic:WHERE','topic:JOIN','post']);
+ assert.deepEqual(topicDesk(topicClass(),'SELECT').missions.map(m=>m.id),['s1','s2','s3']);
+ assert.deepEqual(buildRoom(topicClass()).filter(item=>item.kind==='topic').map(item=>item.label),['SELECT','WHERE','JOIN']);
+ assert.deepEqual(room(topicClass({questionCounts:{pre:0,post:0}})),['topic:SELECT','topic:WHERE','topic:JOIN']);
+ assert.deepEqual(buildRoom(null),[]);
+});
+
+test('a topic desk is open while any of its missions is open, done only when all are done', () => {
+ const data=topicClass({attempted:preDone});
+ assert.deepEqual(roomStates(data,[]),{pre:'done','topic:SELECT':'open','topic:WHERE':'locked','topic:JOIN':'locked',post:'locked'});
+ assert.deepEqual(roomStates(data,['s1','s2']),{pre:'done','topic:SELECT':'open','topic:WHERE':'locked','topic:JOIN':'locked',post:'locked'});
+ assert.deepEqual(roomStates(data,['s1','s2','s3']),{pre:'done','topic:SELECT':'done','topic:WHERE':'open','topic:JOIN':'locked',post:'locked'});
+ assert.deepEqual(roomStates(data,['s1','s2','s3','w1','j1']),{pre:'done','topic:SELECT':'done','topic:WHERE':'done','topic:JOIN':'done',post:'open'});
+});
+
+test('a topic desk counts passed missions and opens the first one still to do', () => {
+ const data=topicClass({attempted:preDone});
+ assert.deepEqual(roomDeskCount(topicDesk(data,'SELECT'),['s1','x']),{done:1,total:3});
+ assert.equal(missionToOpen(topicDesk(data,'SELECT'),data,[]).id,'s1');
+ assert.equal(missionToOpen(topicDesk(data,'SELECT'),data,['s1']).id,'s2');
+ assert.equal(missionToOpen(topicDesk(data,'SELECT'),data,['s1','s2','s3']).id,'s1');
+});
+
+test('a locked topic desk waits on the first unfinished desk before its first mission', () => {
+ assert.deepEqual(roomWaitingOn(topicDesk(topicClass(),'WHERE'),topicClass(),[]).map(item=>item.id),['pre','s1','s2','s3']);
+ assert.deepEqual(roomWaitingOn(topicDesk(topicClass({attempted:preDone}),'WHERE'),topicClass({attempted:preDone}),['s1','s2']).map(item=>item.id),['s3']);
 });

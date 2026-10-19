@@ -3,6 +3,7 @@ import {useMemo, useState} from 'react';
 import {ArrowRight, Bot, CheckCircle2, ChevronRight, Database as DatabaseIcon, FileText, Lightbulb, Play, RotateCcw, Star, Table2, Target, TriangleAlert} from 'lucide-react';
 import {SqlEditor} from './SqlEditor';
 import {ArrangeBoard} from './ArrangeBoard';
+import {TopicNotes} from './TopicNotes';
 import {arrangePieces, judgeArrangement, type Outcome, type Phase, type Verdict} from './lab-model.ts';
 
 type Lesson={id:string;ordinal:number;tables:MissionTable[];title:string;desc:string;task:string;answer:string;hint:string};
@@ -26,12 +27,12 @@ export function SqlLab({lesson,total,solved,ready,sql,onSql,outcome,result,hint,
  const badge=outcome.tone==='idle'?null:BADGE[outcome.tone];
  return <>
   <button className="back" onClick={onBack}>← กลับไปยังบทเรียน</button>
+  <TopicNotes topic={lesson.desc}/>
   <div className="practice lab">
    <section className="panel lab-mission">
     <div className="lab-title"><span className="lab-target"><Target size={28} aria-hidden="true"/></span><div><span className="pill">ภารกิจ {lesson.ordinal} / {total}</span><h1>{lesson.title}</h1></div><span className="lab-xp"><Star size={18} fill="currentColor" aria-hidden="true"/>+100 XP</span></div>
-    <h3 className="lab-head"><FileText size={20} aria-hidden="true"/>คำอธิบายภารกิจ</h3>
+    <h3 className="lab-head"><FileText size={20} aria-hidden="true"/>โจทย์</h3>
     <p className="lab-task">{lesson.task}</p>
-    <div className="lab-goal"><Lightbulb size={20} aria-hidden="true"/><div><b>เป้าหมาย</b><span>{lesson.desc}</span></div></div>
     <h3 className="lab-head"><DatabaseIcon size={20} aria-hidden="true"/>โครงสร้างตาราง</h3>
     {lesson.tables.map(table=><div className="lab-schema" key={table.name}>
      <b>ตาราง: {table.name}</b>

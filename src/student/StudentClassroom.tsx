@@ -1,7 +1,7 @@
 import {ArrowRight, Check, ClipboardCheck, Lock, Play, Star, TrendingUp} from 'lucide-react';
 import {quizLabels, quizKinds} from '../quiz-contract.ts';
 import {DESK_SLOTS, ROOM} from './room-layout.ts';
-import {currentDesk, deskState, buildDesks, isAvailable, profileSummary, waitingOn, type ClassroomSnapshot, type Desk, type DeskState} from './classroom-model.ts';
+import {buildDesks, buildRoom, currentDesk, currentRoomDeskId, missionToOpen, profileSummary, roomDeskCount, roomDeskState, roomWaitingOn, waitingOn, type ClassroomSnapshot, type Desk, type DeskState, type RoomDesk} from './classroom-model.ts';
 
 const stateText:Record<DeskState,string>={locked:'ยังไม่เปิด',open:'พร้อมเรียน',done:'ผ่านแล้ว'};
 
@@ -18,32 +18,32 @@ function deskIcon(state:DeskState){
  return state==='done'?<Check size={20}/>:state==='locked'?<Lock size={18}/>:<Play size={20} fill="currentColor"/>;
 }
 
-// The room picture has 8 painted desks. The post-test always takes the podium (last slot); the pre-test and the missions
-// fill the slots before it in order. Desks past the 7 earlier slots do not fit in the picture and are listed in the profile card.
+// The room picture has 8 painted desks. The post-test always takes the podium (last slot); the pre-test and the topic desks
+// fill the slots before it in order. A class has at most 5 topics (classroom_missions.topic check), so they always fit.
 const PODIUM=DESK_SLOTS.length-1;
-function placeDesks(desks:readonly Desk[]){
- const post=desks.find(desk=>desk.kind==='quiz'&&desk.quiz==='post');
- const earlier=desks.filter(desk=>desk!==post);
- return {placed:[...earlier.slice(0,PODIUM).map((desk,slot)=>({desk,slot})),...(post?[{desk:post,slot:PODIUM}]:[])],overflow:earlier.slice(PODIUM)};
+function placeDesks(room:readonly RoomDesk[]){
+ const post=room.find(desk=>desk.kind==='quiz'&&desk.quiz==='post');
+ return [...room.filter(desk=>desk!==post).slice(0,PODIUM).map((desk,slot)=>({desk,slot})),...(post?[{desk:post,slot:PODIUM}]:[])];
 }
 
 export function StudentClassroom({name,xp,snapshot,completedIds,onOpen}:StudentClassroomProps){
- const desks=buildDesks(snapshot);
+ const room=buildRoom(snapshot);
+ const currentId=currentRoomDeskId(snapshot,completedIds);
  const current=currentDesk(snapshot,completedIds);
  const profile=profileSummary(snapshot,completedIds);
- const currentId=current?.id;
- const postDesk=desks.find(desk=>desk.kind==='quiz'&&desk.quiz==='post');
+ const postDesk=buildDesks(snapshot).find(desk=>desk.kind==='quiz'&&desk.quiz==='post');
  const postWaits=postDesk&&snapshot&&!snapshot.attempted.post?waitingOn(postDesk,snapshot,completedIds):[];
- const postNote=!postWaits.length?'':`ต้องผ่าน ${postWaits.map(item=>item.label).join(' และ ')} ก่อนปลดล็อก Post-test`;
- const {placed,overflow}=placeDesks(desks);
- const deskButton=(desk:Desk,className:string,style?:React.CSSProperties,number?:number)=>{
-  const state=deskState(desk,snapshot,completedIds);
-  const waits=state==='locked'&&isAvailable(desk,snapshot)?waitingOn(desk,snapshot,completedIds):[];
+ const postNote=!postWaits.length?'':`ต้องผ่าน ${[...new Set(postWaits.map(item=>item.kind==='mission'?item.topic:item.label))].join(' และ ')} ก่อนปลดล็อก Post-test`;
+ const open=(desk:RoomDesk)=>onOpen(desk.kind==='quiz'?desk:missionToOpen(desk,snapshot,completedIds));
+ const deskButton=(desk:RoomDesk,slot:number)=>{
+  const state=roomDeskState(desk,snapshot,completedIds);
+  const waits=state==='locked'?roomWaitingOn(desk,snapshot,completedIds):[];
+  const count=desk.kind==='topic'?roomDeskCount(desk,completedIds):null;
   const title=desk.kind==='quiz'?`แบบทดสอบ${quizLabels[desk.quiz]}`:desk.label;
-  const label=`${title} · ${stateText[state]}${waits.length?` · ต้องผ่าน ${waits[0].label} ก่อน`:''}`;
-  return <button key={desk.id} data-desk={desk.id} className={`${className} is-${state}${desk.id===currentId?' is-current':''}`} style={style} disabled={state==='locked'} aria-label={label} title={label} onClick={()=>onOpen(desk)}>
-   {number!==undefined&&<span className="student-desk-number" aria-hidden="true">{desk.kind==='quiz'?<ClipboardCheck size={14}/>:number}</span>}
-   <strong>{desk.label}</strong>
+  const label=`${title}${count?` ${count.done}/${count.total} ภารกิจ`:''} · ${stateText[state]}${waits.length?` · ต้องผ่าน ${waits[0].label} ก่อน`:''}`;
+  return <button key={desk.id} data-desk={desk.id} className={`student-desk is-${state}${desk.id===currentId?' is-current':''}`} style={{left:`${DESK_SLOTS[slot].x/ROOM.width*100}%`,top:`${DESK_SLOTS[slot].y/ROOM.height*100}%`}} disabled={state==='locked'} aria-label={label} title={label} onClick={()=>open(desk)}>
+   <span className="student-desk-number" aria-hidden="true">{desk.kind==='quiz'?<ClipboardCheck size={14}/>:slot+1}</span>
+   <strong>{desk.label}</strong>{count&&<small className="student-desk-count">{count.done}/{count.total}</small>}
    <span className="student-desk-status" aria-hidden="true">{deskIcon(state)}</span>
   </button>;
  };
@@ -53,7 +53,7 @@ export function StudentClassroom({name,xp,snapshot,completedIds,onOpen}:StudentC
    <p className="student-room-hint">เลื่อนดูห้องเรียนไปทางซ้ายและขวา</p>
    <div className="student-room-canvas">
     <img className="student-room-image" src="/images/student/classroom-room.webp" alt=""/>
-    {placed.map(({desk,slot})=>deskButton(desk,'student-desk',{left:`${DESK_SLOTS[slot].x/ROOM.width*100}%`,top:`${DESK_SLOTS[slot].y/ROOM.height*100}%`},slot+1))}
+    {placeDesks(room).map(({desk,slot})=>deskButton(desk,slot))}
    </div>
   </section>
   <section className="student-profile-card" aria-label="โปรไฟล์ของฉัน">
@@ -67,10 +67,6 @@ export function StudentClassroom({name,xp,snapshot,completedIds,onOpen}:StudentC
     {!snapshot?.missions.length&&<p role="status" className="student-notice">ยังไม่มีภารกิจ SQL ที่พร้อมทำในห้องนี้</p>}
     {Boolean(snapshot?.unconfiguredMissionCount)&&<p role="status" className="student-notice">ครูกำลังเตรียมข้อมูลอีก {snapshot!.unconfiguredMissionCount} ภารกิจ</p>}
    </section>
-   {overflow.length>0&&<section aria-labelledby="student-more-title">
-    <h3 id="student-more-title">ภารกิจเพิ่มเติม</h3>
-    <div className="student-more-list">{overflow.map(desk=>deskButton(desk,'student-more'))}</div>
-   </section>}
    <section aria-labelledby="student-quiz-title">
     <h3 id="student-quiz-title">คะแนนแบบทดสอบ</h3>
     <div className="student-quiz-scores">

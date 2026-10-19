@@ -1,6 +1,7 @@
 -- Requires supabase/teacher-dashboard.sql, supabase/teacher-quizzes.sql and supabase/teacher-missions.sql first. Idempotent.
 -- Students sign in with a class code (classroom_groups.join_code) plus any student code.
 -- They never read tables: the only door is student_classroom(). It returns quiz scores and never quiz answers.
+-- Missions come back grouped in topic order (the room shows one desk per topic), then in the order the teacher created them.
 -- It does return each configured mission's exercise including answerSql, because the browser judges the query and builds the arrange step from it.
 create or replace function public.new_join_code() returns text language plpgsql volatile set search_path = '' as $$
 declare
@@ -70,7 +71,8 @@ begin
    'name', student.name,
    'needsName', not student.name_confirmed,
    'missions', coalesce((select jsonb_agg(jsonb_build_object('id', m.id::text, 'title', m.title, 'topic', m.topic, 'difficulty', m.difficulty,
-     'description', m.description, 'due_date', m.due_date, 'exercise', m.exercise) order by m.created_at, m.id)
+     'description', m.description, 'due_date', m.due_date, 'exercise', m.exercise)
+     order by array_position(array['SELECT','WHERE','ORDER BY','GROUP BY','JOIN'], m.topic), m.created_at, m.id)
      from public.classroom_missions m where m.class_id = student.class_id and m.exercise is not null), '[]'::jsonb),
    'unconfiguredMissionCount', (select count(*) from public.classroom_missions m where m.class_id = student.class_id and m.exercise is null),
    'questionCounts', jsonb_build_object(

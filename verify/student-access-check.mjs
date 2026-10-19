@@ -34,7 +34,7 @@ await db.exec(sql('student-access.sql'));
 await db.exec(sql('student-access.sql')); // idempotent
 
 const A='00000000-0000-0000-0000-00000000000a';
-const M1='cccccccc-0000-0000-0000-000000000001',M2='cccccccc-0000-0000-0000-000000000002',M3='cccccccc-0000-0000-0000-000000000003';
+const M1='cccccccc-0000-0000-0000-000000000001',M2='cccccccc-0000-0000-0000-000000000002',M3='cccccccc-0000-0000-0000-000000000003',M4='cccccccc-0000-0000-0000-000000000004';
 const exercise=(table,answerSql,rowOrder='any')=>({version:1,tables:[{name:table,columns:[{name:'id',type:'INTEGER'},{name:'name',type:'TEXT'},{name:'price',type:'REAL'}],rows:[[1,'สมุด',25],[2,'ปากกา',10],[3,'ถุง',null]]}],answerSql,starterSql:'SELECT ',hint:'ใช้ WHERE',rowOrder});
 const EX1=exercise('products','SELECT name FROM products WHERE price >= 25'),EX3=exercise('items','SELECT id FROM items ORDER BY id DESC','exact');
 await db.exec(`
@@ -164,6 +164,11 @@ await db.query("update public.classroom_missions set exercise=jsonb_set(exercise
 await asRole('anon');
 check('an edited hint reaches the next student call',(await call(codes['ใหม่'],'66001')).missions[0].exercise.hint==='ใบ้ใหม่');
 await teacher();
+await db.query("insert into public.classroom_missions(id,teacher_id,class_id,title,topic,difficulty,exercise,created_at) values ($1,$2,$3,'m4','JOIN','hard',$4::jsonb,'2025-01-01')",[M4,A,NEW,JSON.stringify(EX1)]);
+await asRole('anon');
+check('missions come back in topic order, then creation order, even when a later topic was created first',(await call(codes['ใหม่'],'66001')).missions.map(m=>m.id).join()===[M1,M2,M3,M4].join());
+await teacher();
+await db.query('delete from public.classroom_missions where id=$1',[M4]);
 await db.query('update public.classroom_missions set exercise=null where id=$1',[M2]);
 await asRole('anon');
 const reverted=await call(codes['ใหม่'],'66001');

@@ -89,11 +89,7 @@
 .student-app .lab-xp svg{color:#ffb300}
 .student-app .lab-head{display:flex;align-items:center;gap:10px;font-size:18px;color:#26234a}
 .student-app .lab-head svg{color:#5b54ff}
-.student-app .lab-task{margin:-6px 0 0;color:#3d3a55;font-size:16px;line-height:1.7}
-.student-app .lab-goal{display:flex;gap:12px;padding:14px 16px;border-radius:16px;background:#eeebff}
-.student-app .lab-goal>svg{color:#f5a524;flex:none;margin-top:2px}
-.student-app .lab-goal b{display:block;font-size:15px;color:#26234a}
-.student-app .lab-goal span{display:block;font-size:13px;color:#6a6585;line-height:1.6}
+.student-app .lab-task{margin:-6px 0 0;padding:16px 18px;border:2px solid #b8adf5;border-left:5px solid #6b5ce7;border-radius:16px;background:#f7f5ff;color:#26234a;font-size:18px;font-weight:600;line-height:1.8;overflow-wrap:anywhere}
 .student-app .lab-schema{border-radius:14px;background:#f8f7fd;padding:10px 12px}
 .student-app .lab-schema b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:14px;margin:2px 0 8px;color:#26234a}
 .student-app .lab-schema table{background:#fff;border:1px solid #e9e6f4;border-radius:10px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13px}
@@ -210,4 +206,4 @@
 .student-app .student-post-wait{display:flex;align-items:center;gap:6px;margin:10px 0 0;padding:8px 12px;border-radius:12px;background:#fff3d1;color:#8a6420;font-size:13px}
 
 .student-app .student-desk strong{overflow:hidden;text-overflow:ellipsis;min-width:0}.student-app .student-notice{margin:10px 0 0;padding:8px 12px;border-radius:12px;background:#f3efff;color:#5d4f80;font-size:13px}
-.student-app .student-more-list{display:grid;gap:8px}.student-app .student-more{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:1px solid #e4dcef;border-radius:12px;background:#f8f5ff;color:#49336b;text-align:left}.student-app .student-more.is-done{background:#edf9f2;color:#2c7052}.student-app .student-more.is-locked{background:#f4f3f5;color:#8b849c;cursor:not-allowed}.student-app .student-more strong{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.student-app .student-more .student-desk-status{display:flex;position:static;width:26px;height:26px;border:0;background:transparent;color:inherit;box-shadow:none}
+.student-app .student-desk-count{font-size:.85em;font-weight:700;opacity:.75;flex:none}

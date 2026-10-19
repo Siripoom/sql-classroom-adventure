@@ -85,9 +85,11 @@ const desks=student.locator('.student-desk');
 await desks.first().waitFor();
 await student.screenshot({path:`${out}/student-room.png`});
 assert.equal(await desks.count(),1);
+assert.equal(await student.locator('.student-desk-count').innerText(),'0/1');
+assert.equal(await desks.first().locator('strong').innerText(),'SELECT');
 assert.match(await student.locator('.student-profile-card').innerText(),/ครูกำลังเตรียมข้อมูลอีก 1 ภารกิจ/);
 assert.equal(await desks.first().isDisabled(),false);
-step('student sees only the configured mission, plus a note that one is being prepared');
+step('student sees the SELECT desk with its one configured mission (0/1), plus a note that one is being prepared');
 
 await desks.first().click();
 const lab=student.locator('.lab-mission');
@@ -140,10 +142,11 @@ await asTeacher();
 await db.query("update public.classroom_missions set exercise=$1::jsonb where title='ภารกิจเก่าที่ยังไม่มีข้อมูล'",[JSON.stringify({...authored.exercise,answerSql:'SELECT COUNT(*) AS n FROM products',rowOrder:'any'})]);
 reply=await classroom();
 await student.reload();
-await desks.nth(1).waitFor();
-assert.equal(await desks.count(),2);
+await student.locator('.student-desk-count').waitFor();
+assert.equal(await desks.count(),1);
+assert.equal(await student.locator('.student-desk-count').innerText(),'0/2');
 assert.equal(await student.locator('.student-profile-card').getByText(/ครูกำลังเตรียม/).count(),0);
-step('configuring the old mission adds it as the second desk and clears the notice');
+step('configuring the old mission joins the same SELECT desk (0/2) and clears the notice');
 
 await browser.close();
 console.log(problems.length?'PROBLEMS\n'+problems.join('\n'):'all ok, no console errors');
